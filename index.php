@@ -10,10 +10,14 @@
     $future = $_GET['get_future'];
     $rate = $_GET['rate'];
 
-    if(is_numeric($rate) && $rate > 0 && is_numeric($last) && $last > 0 && is_numeric($future) && $future > 0) {
-      $res = (($last - $future) * $rate);
+    if(verify($last) && verify($future) && verify($rate) && $last > $future) {
+      $res = ($last - $future) * $rate;
     } else {
     echo "Ошибка,введите корректные данные!";
+  }
+
+  function verify($num){
+    return is_numeric($num) && $num > 0;
   }
     
 ?>
@@ -21,11 +25,11 @@
     <span>Калькулятор комуналки</span>
     <form name="get_info" action="" id="calc_formid">
         <label for="get_last">Значение в прошлом месяце:</label>
-        <input name="get_last" value="<?php echo $last ?>" size="7" />
+        <input name="get_last" value="<?php echo $last ?>" size="7" required/>
         <div label for="get_future">Значение в текущем месяце</label>
-        <input name="get_future" value="<?php echo $future ?>" size="7" /> </div>   
+        <input name="get_future" value="<?php echo $future ?>" size="7" required/> </div>   
         <div label for="rate">Тариф:</label>
-        <input name="rate" value="<?php echo $rate ?>" size="7" /> </div> 
+        <input name="rate" value="<?php echo $rate ?>" size="7" required/> </div> 
         <div class="calculate"></div>
         <input type="submit" value="Считать" name="calculate" class="calc_button" />
     </form>
