@@ -36,4 +36,4 @@
     <div label>Результат: </label><input name="result" id="calc_result" value="<?php echo $res ?>"  disabled="disabled" size="4" />
 </div>
  </body>
-</html>git
+</html>
