@@ -9,7 +9,12 @@
     $last = $_GET['get_last'];
     $future = $_GET['get_future'];
     $rate = $_GET['rate'];
-    $res = (($last - $future) * $rate);
+
+    if($future > 0 && preg_match("/[^A-Za-z]/", $last) == 1 && $last > 0 && $rate > 0 && preg_match("/[^A-Za-z]/", $future) && preg_match("/[^A-Za-z]/", $rate)) {
+      $res = (($last - $future) * $rate);
+    } else {
+    echo "Ошибка,введите корректные данные!";
+  }
     
 ?>
 <div class="info">
